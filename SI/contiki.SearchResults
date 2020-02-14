@@ -1,0 +1,120 @@
+---- PROCESS Matches (120 in 11 files) ----
+Autostart.c (contiki):void autostart_start(struct process *const processes[])
+Autostart.c (contiki):        PRINTF("autostart_start: starting process '%s'\r\n", processes[i]->name);
+Autostart.c (contiki):void autostart_exit(struct process *const processes[])
+Autostart.c (contiki):        PRINTF("autostart_exit: stopping process '%s'\n", processes[i]->name);
+Autostart.h (contiki):#include "process.h"
+Autostart.h (contiki):    struct process *const autostart_processes[] = {__VA_ARGS__, NULL}
+Autostart.h (contiki):extern struct process *const autostart_processes[];
+Autostart.h (contiki):void autostart_start(struct process *const processes[]);
+Autostart.h (contiki):void autostart_exit(struct process *const processes[]);
+Core_cm3.c (core): * @brief  Return the Process Stack Pointer
+Core_cm3.c (core): * Return the actual process stack pointer
+Core_cm3.c (core): * @brief  Set the Process Stack Pointer
+Core_cm3.c (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.c (core): * (process stack pointer) Cortex processor register
+Core_cm3.c (core): * @brief  Return the Process Stack Pointer
+Core_cm3.c (core): * Return the actual process stack pointer
+Core_cm3.c (core): * @brief  Set the Process Stack Pointer
+Core_cm3.c (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.c (core): * (process stack pointer) Cortex processor register
+Core_cm3.c (core): * @brief  Return the Process Stack Pointer
+Core_cm3.c (core): * Return the actual process stack pointer
+Core_cm3.c (core): * @brief  Set the Process Stack Pointer
+Core_cm3.c (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.c (core): * (process stack pointer) Cortex processor register
+Core_cm3.h (core): * @brief  Return the Process Stack Pointer
+Core_cm3.h (core): * Return the actual process stack pointer
+Core_cm3.h (core): * @brief  Set the Process Stack Pointer
+Core_cm3.h (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.h (core): * (process stack pointer) Cortex processor register
+Core_cm3.h (core): * @brief  Return the Process Stack Pointer
+Core_cm3.h (core): * Return the actual process stack pointer
+Core_cm3.h (core): * @brief  Set the Process Stack Pointer
+Core_cm3.h (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.h (core): * (process stack pointer) Cortex processor register
+Core_cm3.h (core): * @brief  Return the Process Stack Pointer
+Core_cm3.h (core): * Return the actual process stack pointer
+Core_cm3.h (core): * @brief  Set the Process Stack Pointer
+Core_cm3.h (core): * @param  topOfProcStack  Process Stack Pointer
+Core_cm3.h (core): * (process stack pointer) Cortex processor register
+Etimer.c (contiki):PROCESS(etimer_process, "Event timer");
+Etimer.c (contiki):struct process etimer_process = {0, "Event timer", process_thread_etimer_process}
+Etimer.c (contiki):            struct process *p = data;
+Etimer.c (contiki):                    /* Reset the process ID of the event timer, to signal that the
+Etimer.h (contiki):#include "process.h"
+Etimer.h (contiki):    struct process *p;
+Etimer.h (contiki):/* extern struct process etimer_process; */
+Main.c (user):#include "process.h"
+Main.c (user):PROCESS(LEDRED, "ledred");
+Main.c (user):PROCESS(LEDYELLOW, "ledyellow");
+Main.c (user):PROCESS(print_hello_process, "Hello");
+Main.c (user):PROCESS(print_world_process, "world");
+Main.c (user):    printf("***print world process start***\r\n");
+Main.c (user):    printf("***print hello process start***\r\n");
+Process.c (contiki):#include "process.h"
+Process.c (contiki):struct process *process_list = NULL;
+Process.c (contiki):struct process *process_current = NULL;
+Process.c (contiki):    struct process *p;
+Process.c (contiki):static void call_process(struct process *p, process_event_t ev,
+Process.c (contiki):void process_start(struct process *p, process_data_t data)
+Process.c (contiki):    struct process *q;
+Process.c (contiki):    /* First make sure that we don't try to start a process that is
+Process.c (contiki):    /* If we found the process on the process list, we bail out. */
+Process.c (contiki):    PRINTF("process: starting '%s'\r\n", PROCESS_NAME_STRING(p));
+Process.c (contiki):    /* Post a synchronous initialization event to the process. */
+Process.c (contiki):static void exit_process(struct process *p, struct process *fromprocess)
+Process.c (contiki):    register struct process *q;
+Process.c (contiki):    struct process *old_current = process_current;
+Process.c (contiki):    PRINTF("process: exit_process '%s'\r\n", PROCESS_NAME_STRING(p));
+Process.c (contiki):    /* Make sure the process is in the process list before we try to
+Process.c (contiki):        /* Process was running */
+Process.c (contiki):         * this process is about to exit. This will allow services to
+Process.c (contiki):         * deallocate state associated with this process.
+Process.c (contiki):            /* Post the exit event to the process that is about to exit. */
+Process.c (contiki):static void call_process(struct process *p, process_event_t ev,
+Process.c (contiki):        printf("process: process '%s' called again with event %02X\r\n",
+Process.c (contiki):        PRINTF("process: calling process '%s' with event %02X\r\n", PROCESS_NAME_STRING(p),
+Process.c (contiki):void process_exit(struct process *p)
+Process.c (contiki):    struct process *p;
+Process.c (contiki):    struct process *receiver;
+Process.c (contiki):    struct process *p;
+Process.c (contiki):     * function for the process. We only process one event at a time and
+Process.c (contiki):                /* If we have been requested to poll a process, we do this in
+Process.c (contiki):            specified process. */
+Process.c (contiki):            state of the process. */
+Process.c (contiki):            /* Make sure that the process actually is running. */
+Process.c (contiki):    /* Process poll events. */
+Process.c (contiki):    /* Process one event from the queue */
+Process.c (contiki):int process_post(struct process *p, process_event_t ev, process_data_t data)
+Process.c (contiki):        PRINTF("process_post: NULL process posts event %d to process '%s', nevents %d\r\n",
+Process.c (contiki):        PRINTF("process_post: Process '%s' posts event %02X to process '%s', nevents %d\r\n",
+Process.c (contiki):void process_post_synch(struct process *p, process_event_t ev,
+Process.c (contiki):    struct process *caller = process_current;
+Process.c (contiki):void process_poll(struct process *p)
+Process.c (contiki):int process_is_running(struct process *p)
+Process.h (contiki):#define PROCESS_NAME(name) extern struct process name
+Process.h (contiki):#define PROCESS(name, strname)      \
+Process.h (contiki):    struct process name = {NULL,    \
+Process.h (contiki):#define PROCESS(name, strname)            \
+Process.h (contiki):    struct process name = {NULL, strname, \
+Process.h (contiki):struct process
+Process.h (contiki):    struct process *next;
+Process.h (contiki):#define PROCESS_NAME_STRING(process) ""
+Process.h (contiki):#define PROCESS_NAME_STRING(process) (process)->name
+Process.h (contiki):void process_start(struct process *p, process_data_t data);
+Process.h (contiki):int process_post(struct process *p, process_event_t ev,
+Process.h (contiki):void process_post_synch(struct process *p,
+Process.h (contiki):void process_exit(struct process *p);
+Process.h (contiki):extern struct process *process_current;
+Process.h (contiki):void process_poll(struct process *p);
+Process.h (contiki):int process_is_running(struct process *p);
+Process.h (contiki):extern struct process *process_list;
+Stm32f10x.h (user):#define ETH_DMASR_TPS         ((uint32_t)0x00700000)  /* Transmit process state */
+Stm32f10x.h (user):#define ETH_DMASR_RPS         ((uint32_t)0x000E0000)  /* Receive process state */
+Stm32f10x.h (user):#define ETH_DMASR_RPSS       ((uint32_t)0x00000100)  /* Receive process stopped status */
+Stm32f10x.h (user):#define ETH_DMASR_TPSS       ((uint32_t)0x00000002)  /* Transmit process stopped status */
+Stm32f10x.h (user):#define ETH_DMAIER_RPSIE     ((uint32_t)0x00000100)  /* Receive process stopped interrupt enable */
+Stm32f10x.h (user):#define ETH_DMAIER_TPSIE     ((uint32_t)0x00000002)  /* Transmit process stopped interrupt enable */
+Stm32f10x_adc.c (stm32f10x_stdperiph_driver\src):  * @brief  Starts the selected ADC calibration process.
+Stm32f10x_adc.c (stm32f10x_stdperiph_driver\src):  /* Enable the selected ADC calibration process */  
